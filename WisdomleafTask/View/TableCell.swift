@@ -14,6 +14,7 @@ class TableCell: UITableViewCell {
     @IBOutlet weak var descriptionLbl: UILabel!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var cellImage: UIImageView!
+    static let identifier = "TableCell"
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

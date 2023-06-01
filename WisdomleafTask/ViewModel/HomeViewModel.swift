@@ -6,13 +6,23 @@
 //
 
 import Foundation
+import UIKit
 class HomeViewModel{
-    
-    func tableService(){
-        ApiCall.shared.get(from: URL(string: "adjk")!) { result in
-            switch result {
-            case .success(let data): print("Any")
-            case .failure(let error):
+    var homeModelList : [HomeModel] = []
+    weak var delegate : Reload?
+    func tableService(isRefreshed : Bool = false){
+        ApiCall.shared.get(from: URL(string: "https://picsum.photos/v2/list?page=2&limit=20")!) { [self] result in
+            do{
+                switch result {
+                case .success(let data):
+                    let values = try JSONDecoder().decode([HomeModel].self, from: data)
+                    homeModelList = isRefreshed ? [] : homeModelList
+                    homeModelList += values
+                    delegate?.reloadCell()
+                case .failure(let error):
+                    print(error)
+                }
+            }catch{
                 print(error)
             }
         }

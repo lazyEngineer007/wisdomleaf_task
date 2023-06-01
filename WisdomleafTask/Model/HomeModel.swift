@@ -9,8 +9,8 @@ import Foundation
 struct HomeModel : Codable {
     let id : String?
     let author : String?
-    let width : Int?
-    let height : Int?
+    let width : Double?
+    let height : Double?
     let url : String?
     let download_url : String?
     var isChecked : Bool = false
@@ -28,8 +28,8 @@ struct HomeModel : Codable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = try values.decodeIfPresent(String.self, forKey: .id)
         author = try values.decodeIfPresent(String.self, forKey: .author)
-        width = try values.decodeIfPresent(Int.self, forKey: .width)
-        height = try values.decodeIfPresent(Int.self, forKey: .height)
+        width = try values.decodeIfPresent(Double.self, forKey: .width)
+        height = try values.decodeIfPresent(Double.self, forKey: .height)
         url = try values.decodeIfPresent(String.self, forKey: .url)
         download_url = try values.decodeIfPresent(String.self, forKey: .download_url)
     }
