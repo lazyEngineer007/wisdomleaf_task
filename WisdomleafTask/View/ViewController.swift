@@ -11,7 +11,7 @@ protocol Reload : AnyObject{
 }
 
 class ViewController: UIViewController {
-
+    var page = 1
     @IBOutlet weak var homeTable: UITableView!
     let homeViewModel = HomeViewModel()
     override func viewDidLoad() {
@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         homeTable.dataSource = self
         
         homeViewModel.delegate = self
-        homeViewModel.tableService(isRefreshed: false)
+        homeViewModel.tableService(isRefreshed: false, page: page)
        
     }
 
@@ -56,18 +56,22 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource{
         let height = desiredWidth * aspectRatio
         cell.imageHeight.constant = height
         
+        //Download Image
         
         let urlString = dict.download_url ?? ""
             let placeholderImage = UIImage(named: "placeholder")
-        
             downloadImage(from: urlString, placeholderImage: placeholderImage) { (image) in
-                // Set the image on your UIImageView
                 cell.cellImage.image = image
             }
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == homeViewModel.homeModelList.count - 5 && homeViewModel.homeModelList.count>5{
+            homeViewModel.tableService(page: page + 1)
+        }
     }
     
     

@@ -10,8 +10,8 @@ import UIKit
 class HomeViewModel{
     var homeModelList : [HomeModel] = []
     weak var delegate : Reload?
-    func tableService(isRefreshed : Bool = false){
-        ApiCall.shared.get(from: URL(string: "https://picsum.photos/v2/list?page=2&limit=20")!) { [self] result in
+    func tableService(isRefreshed : Bool = false, page : Int = 1){
+        ApiCall.shared.get(from: URL(string: "https://picsum.photos/v2/list?page=\(page)&limit=20")!) { [self] result in
             do{
                 switch result {
                 case .success(let data):
