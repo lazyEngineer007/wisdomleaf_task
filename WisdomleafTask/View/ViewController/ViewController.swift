@@ -57,7 +57,6 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.identifier, for: indexPath) as! TableCell
         let dict = homeViewModel.homeModelList[indexPath.row]
-        //  cell.cellImage.image = UIImage(named: "placeholder")
         cell.titleLbl.text = dict.author
         cell.descriptionLbl.text = dict.url ?? ""
         

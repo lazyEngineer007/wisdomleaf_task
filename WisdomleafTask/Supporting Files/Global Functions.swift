@@ -50,12 +50,3 @@ func downloadImage(from urlString: String, placeholderImage: UIImage? = nil, com
     }
 }
 
-//func setupImageView() {
-//    let urlString = "https://example.com/image.jpg" // Replace with the URL of your image
-//    let placeholderImage = UIImage(named: "placeholder") // Replace with your placeholder image
-//
-//    downloadImage(from: urlString, placeholderImage: placeholderImage) { (image) in
-//        // Set the image on your UIImageView
-//        yourImageView.image = image
-//    }
-//}
