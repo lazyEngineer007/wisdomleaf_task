@@ -8,9 +8,12 @@
 import Foundation
 import UIKit
 class HomeViewModel{
+    
     var homeModelList : [HomeModel] = []
     weak var delegate : Reload?
+    
     func tableService(isRefreshed : Bool = false, page : Int = 1){
+        print("API CALL")
         ApiCall.shared.get(from: URL(string: "https://picsum.photos/v2/list?page=\(page)&limit=20")!) { [self] result in
             do{
                 switch result {
@@ -18,7 +21,7 @@ class HomeViewModel{
                     let values = try JSONDecoder().decode([HomeModel].self, from: data)
                     homeModelList = isRefreshed ? [] : homeModelList
                     homeModelList += values
-                    delegate?.reloadCell()
+                    delegate?.reloadCell(isReFreshed: isRefreshed)
                 case .failure(let error):
                     print(error)
                 }

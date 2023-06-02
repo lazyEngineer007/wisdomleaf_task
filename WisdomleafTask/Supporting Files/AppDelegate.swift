@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             // Transition to the main interface
             // For example:
-            self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+           // self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
         }
 
         return true
